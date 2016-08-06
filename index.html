@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Portfolio Page</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href= "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <!-- nav bar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="#">Richard Huynh</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        
+      <ul class="nav navbar-nav">
+        <li ><a href="#home">Home</a></li>
+        
+        <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+    
+    
+    
+<!--<div>
+    <nav class="navbar navbar-fixed-top">
+        <div class = "container-fluid">
+        <ul class = "nav navbar-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        </ul>
+        </div>
+        </nav>
+    </div>
+    <!-- Home -->
+<div id="home" class='page'>
+    <h1> Richard Huynh</h1>
+    <img src="http://i.imgur.com/McjKlid.jpg">
+    <h1> Web Developer <br>(In Progress)</h1>
+
+    
+    </div>    
+    
+    <!-- About-->
+    <div id = 'about' class='page'>
+    <h1>About</h1>
+    <p> Hi, my name is Richard, I like to build stuff. Useful stuff. I have long stints of productive obsessions over my projects. I also enjoy food, and traveling, and learning both programming and spoken languages. Ironically when I am not doing the programming I try to spend as much time outside as inhumanly possible.
+        <br><br>
+        SKILLS:<br>
+        HTML<br>
+        CSS<br>
+        Javascript<br>
+        Jquery<br>
+        Python<br>
+        Tableau<br>
+        Cooking<br>
+        Learning New Things!
+        </p>
+        
+        
+        
+    </div>
+    <!--Portfolio -->
+    <div id = "portfolio" class='page'>
+        <h1>Portfolio</h1>
+        <p>My portfolio is also in progress</p>
+        
+        <div>
+         <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        </div>
+       
+        <div>
+         <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        <a class='col-xs-3 col-sm-4' href='#'><img src="#">
+        </a>
+        </div>
+        
+    </div>
+    <!-- Contact-->
+    <div id = "contact" class='page'>
+    <h1> Contact Me       <i class="fa fa-envelope" aria-hidden="true"></i></h1>
+        
+        <form action ="MAILTO:r.huynh.a@gmail.com" method ="post" enctype="text/plain">
+            <h3>Name</h3>
+        <input type="text" name="Name" placeholder="your name"><br>
+            <h3>Email</h3>
+        <input type="text" name="Email"  placeholder="your email:"><br>
+            <h3>Your Message</h3>
+        <input type="text" name="Message" placeholder="your message"  size="50"><br>
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+        </form>
+       
+ <a href="https://www.linkedin.com/in/rauhuynh
+" class="btn btn-social-icon btn-linkedin">
+    <span class="fa fa-linkedin"></span>
+  </a>
+    <a class="btn btn-social-icon btn-github">
+    <span class="fa fa-github"></span>
+  </a>  
+   
+        
+    <a class="btn btn-social-icon btn-wordpress"><span class="fa fa-wordpress"></span>
+        </a>
+
+
+        
+    </div>
+    
+    
+    
+</body>
+</html>
+
+<style>
+    p{
+        font-family:serif;
+    }
+    
+    h1{
+        font-family:serif;
+    }
+    h3{
+        font-family: sans-serif
+    }
+    /*navbar */
+    .navbar-default {
+  background-color:lightcyan;
+  background-image: none;
+  background-repeat: no-repeat;
+        
+ }
+    .icon-bar{
+        color:black;
+    }
+    
+    li a{
+        font-size: 3vh;
+        color:black;        font-family:sans-serif;
+    }
+    /*page stuff*/
+    .page{
+        text-align: center;
+        min-height:100vh;
+        min-width:100vh;
+        padding:10vh;
+        background-color: #f8edd1;
+    }
+    /*Home Page*/
+    #home img{
+        height:50vh;
+        border-radius: 50vh;
+        margin:
+            
+    }
+     #about {
+         background-color:wheat;
+    }
+    #about p{
+        font-size: 20px;
+        padding-top: 5vh;
+        line-height: 30px;
+    }
+    
+    #portfolio{
+    }
+    #portfolio div img{
+        height:20vh;
+        width:20vh;
+        padding: 5px;
+    }
+    
+    
+    #contact{
+        background-color: wheat;
+    }
+    #contact form{
+        padding:2vh;
+    }
+    input[name=Message]{
+        padding-bottom: 100px;
+    }
+    #contact a{
+        font-size: 30px;
+    }
+     
+    
+
+    
+</style>
