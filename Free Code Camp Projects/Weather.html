@@ -1,0 +1,64 @@
+<head>
+</head>
+
+<body>
+<h1>Weather App</h3>
+ <h3 id="city">Please Wait... </h3>   
+<h3 id="temp">Please Wait...</h3>
+    <h3 id="icon">Please Wait...</h3>
+    
+ 
+    
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    
+<script>
+    $(document).ready(function(){
+if (navigator.geolocation){
+    console.log('success!');
+}
+    else {
+        console.log('fail!');
+    }
+ window.onload = function(){
+     var startPos;
+     var lon;
+     var lat;
+     
+     var geoSuccess = function(position){
+     startPos = position;
+    lat= startPos.coords.latitude;
+     lon= startPos.coords.longitude;
+         
+var key ="65d01fbbf950253cd6eb32a53ff73b87"; 
+ $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&APPID=65d01fbbf950253cd6eb32a53ff73b87&units=metric",function(data){
+     console.log(data);
+$('#city').text(data.name);
+     var temp=Math.floor(data.main.temp);
+     $('#temp').text(temp+"ºC");
+     $('#icon').text(data.weather[0].main);
+     $('body').append("<img src=http://openweathermap.org/img/w/"+data.weather[0].icon+".png>");
+     
+$('#temp').click(function(){
+    temp=Math.floor(temp*1.8+32,2);
+     $('#temp').text(temp+"ºF");
+});     
+     
+     
+ }); 
+ };
+  navigator.geolocation.getCurrentPosition(geoSuccess);
+     
+    
+    };// gets geo coordinates of current location 
+
+// Title, 
+    //Show city, show temp, toggle F to C 
+    //show icon based on weather
+    
+    //open weather api key: 65d01fbbf950253cd6eb32a53ff73b87
+
+        
+});// doc rea
+</script>    
+</body>
+

@@ -1,0 +1,78 @@
+<head>
+</head>
+
+<body>
+<div id="searchBar">
+<h3> Wikipedia Viewer</h3>
+    
+<input type="text" placeholder=" Type Here Lah" >
+    <br>
+ 
+    <a href="https://en.wikipedia.org/wiki/Special:Random"><button> Click here for a random wiki page</button></a>
+       <button id="searchBtn">Search!</button >
+    <br><br>
+    </div>
+<div id='results'></div>
+
+<style>
+    #searchBar{
+        text-align:center;
+        padding-top: 10vh
+    }
+    
+    input[type="text"]{
+        height:30px;
+        width:250px;
+        font-size: 20px;
+    }
+    button{
+        height:30px
+    }
+</style>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script>
+ $('#searchBtn').click(function(){
+     $('#results').text('');
+     var query =$('input').val();
+     var query= query.split(' ').join("+");
+  $.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch="+query,function(data){
+     var srResult = data.query.search;
+      
+     for (var i=0;i<srResult.length;i++){
+        var ext = srResult[i].title;
+        ext =ext.split(' ').join('_'); 
+         $('#results').append("<a href ='https://en.wikipedia.org/wiki/"+ext+"'"+">"+srResult[i].title+"</a><br>" );
+         $('#results').append(srResult[i].snippet+'...');
+    $('#results').append("<br><br>");
+    //a bit messy, but takes the title and make it the extension for the corresponding page
+    }// loop close
+                                         
+                                             
+                 
+                                         
+  });//json call close
+  // wikipedia random https://en.wikipedia.org/wiki/Special:Random  
+    
+     
+});//search button close     
+     
+    /*
+    layout
+    Button for random article
+    
+    search bar 
+    input value from search bar goes into parse action
+    
+    
+    
+    
+    
+    */
+    
+</script>
+</body>
