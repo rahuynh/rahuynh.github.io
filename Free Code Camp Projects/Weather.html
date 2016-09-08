@@ -33,14 +33,19 @@ var key ="65d01fbbf950253cd6eb32a53ff73b87";
  $.get("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&APPID=65d01fbbf950253cd6eb32a53ff73b87&units=metric",function(data){
      console.log(data);
 $('#city').text(data.name);
-     var temp=Math.floor(data.main.temp);
-     $('#temp').text(temp+"ºC");
+    var tempC=Math.floor(data.main.temp);
+    var tempF=Math.floor(tempC*1.8+32);
+     $('#temp').text(tempC+"ºC");
      $('#icon').text(data.weather[0].main);
      $('body').append("<img src=http://openweathermap.org/img/w/"+data.weather[0].icon+".png>");
      
+     
 $('#temp').click(function(){
-    temp=Math.floor(temp*1.8+32,2);
-     $('#temp').text(temp+"ºF");
+$('#temp').toggleClass('fahr');
+    if ($('#temp').hasClass('fahr')){
+        $('#temp').text(tempF+"ºF");
+    }
+    else { $('#temp').text(tempC+"ºC");}
 });     
      
      
