@@ -13,7 +13,7 @@
     <br><br>
     </div>
 <div id='results'></div>
-
+</body>
 <style>
     #searchBar{
         text-align:center;
@@ -40,9 +40,10 @@
      $('#results').text('');
      var query =$('input').val();
      var query= query.split(' ').join("+");
-  $.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&q"+query,function(data){
+  $.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch="+query,function(data){
+            console.log(data)
+
      var srResult = data.query.search;
-      
      for (var i=0;i<srResult.length;i++){
         var ext = srResult[i].title;
         ext =ext.split(' ').join('_'); 
@@ -75,4 +76,3 @@
     */
     
 </script>
-</body>

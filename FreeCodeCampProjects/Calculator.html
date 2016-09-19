@@ -34,9 +34,18 @@
 </table>
 
 
-
 </body>
+<style>
+    #display{
+    }
+    button{
+        width:60px;
+        height:40px;
+        
+    }
 
+
+</style>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
@@ -59,7 +68,13 @@
       });
  
 $('#clearCurrent').click(function(){
-    $('#display').text(lastOperation);
+    operation=operation.split('');
+    operation.pop();
+    operation=operation.join('');
+    
+    
+    $('#display').text(operation);
+    
 });    
      
 $('#clearAll').click(function(){
