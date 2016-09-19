@@ -1,0 +1,95 @@
+<body>
+<h3>Tomato Timer</h3>
+    <input id='time' type = 'number' value='25'>Work Time 
+    <br>
+    <input id='break' type ='number' value = '5'>Break Time
+    <h2 id="time"><span id="minutes">25</span>:<span id="seconds">00</span></h2>
+    
+    <button id="startBtn">Start Timer</button>
+    <button id='stopBtn'>Stop Timer</button>
+    <button id = "resetBtn">Reset Timer</button>
+    
+</body>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+    //LAST STEP ADD SOME SOUND
+    
+    
+     var seconds=60;
+    var minutes = $('#time').val();
+    var work =true;
+    $('#time').change(function(){
+        minutes=$('#time').val();
+    $('#minutes').text(minutes);
+    });
+    // sets up timer
+   
+function second(){
+    if (seconds==60){
+        minutes=minutes-1;
+             $('#minutes').text(minutes)
+    }
+    seconds=seconds-1;
+$('#seconds').text(seconds);
+    if (minutes==0 &&seconds==0){
+        alert('break!! or Keep working, depends')
+        work=!work;
+        if (work==true){
+ minutes=$('#time').val();
+        } else if(work==false){
+            minutes=$('#break').val();    
+        }
+    }
+    if (seconds<10){
+      $('#seconds').text('0'+seconds);  
+    }
+    if (seconds==0&&minutes>0){
+        seconds=60;
+    }
+    
+    // NEXT find a way to make timer stop/ switch over
+  
+} // second function makes timer for seconds count down.
+    
+    
+$('#startBtn').click(function(){
+      $('#minutes').text("")
+    $('#minutes').text(minutes);
+    timer=setInterval(second,1000);
+});   
+    
+$('#stopBtn').click(function(){
+   clearInterval(timer); 
+});
+$('#resetBtn').click(function(){
+       clearInterval(timer); 
+   $('#minutes').text($('#time').val()) 
+   $('#seconds').text('00');
+});
+    
+    
+    
+//setInterval(second,2000);    
+/*
+Making the pomodoro clock
+create timer that defaults at 25min using timeout, at time out turn on alarm + alert.
+
+after time goes off, break period goes, ( default at 5)
+then restarts to 25 minutes
+
+time function for both break and take input that is defaulted at 25 and 5
+
+timer is stopped at started when clicked.
+
+so.... have several seperate time functions going on, every every second the second goes down, every minute the minute goes down.
+
+alternative, timer built from date. 
+on click takes current date and timer takes current time +25 minutes
+
+
+*/
+    
+    
+
+</script>

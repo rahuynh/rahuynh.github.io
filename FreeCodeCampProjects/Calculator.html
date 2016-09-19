@@ -1,0 +1,102 @@
+
+<body>
+<h3 id ="display">0</h3>
+<table>
+<tr>
+<td><button id="clearAll">AC</button></td>
+<td><button id="clearCurrent">CE</button></td>
+<td><button id="percent">%</button></td>
+<td><button class='canDisplay'>/</button></td>
+</tr>
+<tr>
+<td><button class='canDisplay'>7</button></td>
+<td><button class='canDisplay'>8</button></td>
+<td><button class='canDisplay'>9</button></td>
+<td><button class='canDisplay'>x</button></td>
+</tr>
+<tr>
+<td><button class='canDisplay'>4</button></td>
+<td><button class='canDisplay'>5</button></td>
+<td><button class='canDisplay'>6</button></td>
+<td><button class='canDisplay'>-</button></td>
+</tr>
+<tr>
+<td><button class='canDisplay'>1</button></td>
+<td><button class='canDisplay'>2</button></td>
+<td><button class='canDisplay'>3</button></td>
+<td><button class='canDisplay'>+</button></td>
+</tr>
+<tr>
+<td><button class='canDisplay'>0</button></td>
+<td><button class='canDisplay'>.</button></td>
+<td><button id="equals">=</button></td>
+</tr>
+</table>
+
+
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+    var operation =''
+    var lastOperation=0;
+    $('.canDisplay').click(function(){
+        var input = $(this).text()
+        operation= operation+input
+        // 
+        
+ $('#display').text(operation);
+    });
+ 
+ $('#equals').click(function(){
+    operation= operation.replace('x','*');
+     operation =eval(operation);
+    $('#display').text(operation);
+      lastOperation =operation
+     //evaluates function and returns result
+      });
+ 
+$('#clearCurrent').click(function(){
+    $('#display').text(lastOperation);
+});    
+     
+$('#clearAll').click(function(){
+    $('#display').text('0');
+    lastOperation=0
+    operation='';
+});    
+     
+$('#percent').click(function(){
+    operation=eval(operation)/100;
+$('#display').text(operation)            
+});
+     
+
+ 
+/*
+calculator functionality:
+create buttons
+when button is clicked, add value of button to display
+when '=' is clicked, take value of display and pass to math function 
+take a hidden variable that goes along with display. captures input information, once '=' is entered, final value is displayed. yay!!!
+
+
+
+
+
+
+
+
+ac ce %  /
+7  8  9  x
+4  5  6  -
+7  8  9  +
+0  .  =   
+
+
+*/
+
+
+</script>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app='gemStore'> <!-- 2.  attach module name ot ng-app-->
+  <head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+      <script type="text/javascript" src="App.js"></script>
+  </head>
+  <body ng-controller='storeController as store'><!--5. attach controler with controller name as alias this.product becomes store.product in html -->
+    <div ng-repeat='product in store.products' ng-hide='store.product.soldOut'><!-- ng-repeat to show loop through array and show all products -->
+      <h1>
+      {{store.product.name}} <!-- expressions can display data, this references the gem object-->
+      </h1>{{store.product.price||currency}}
+      <img ng-src='product.images[0]'>  
+      <button ng-show='store.product.canPurchase'>Add to Cart</button>
+        <div ng-repeat='image in product.images' class='thumbnail'>
+        <img ng-src="{{image}}"><!-- can do repeat with images as well -->
+        </div>
+        </div>
+  </body>
+</html>

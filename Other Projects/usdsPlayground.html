@@ -1,0 +1,17 @@
+<body>
+
+</body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script>
+$.ajax({
+   type:'GET',
+ url:'http://www.state.gov/api/v1/?command=get_country_fact_sheets&fields=site_url,mobile_url,content_html',
+    success:function(data){
+       console.log(data); $('body').append(data.country_fact_sheets[0].content_html);
+        
+    }
+    
+});
+
+</script>

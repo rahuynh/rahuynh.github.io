@@ -1,0 +1,14 @@
+<body>
+<h2></h2>
+</body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+$.ajax({
+type:'GET',
+ url:'https://api.nasa.gov/neo/rest/v1/feed?', 
+success:function(data){
+   $('h2').append('apple');
+}    
+});
+     
+</script>
