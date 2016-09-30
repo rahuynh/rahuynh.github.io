@@ -1,0 +1,81 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<body>
+    
+    <br>
+<table>
+<tr>
+<td><button class = 'board'></button></td>
+<td><button class = 'board'></button></td>
+    <td><button class = 'board'></button></td>
+    </tr>   
+    
+<tr>
+<td><button class = 'board'></button></td>
+<td><button class = 'board'></button></td>
+    <td><button class = 'board'></button></td>
+    </tr> 
+    
+    <tr>
+<td><button class = 'board'></button></td>
+<td><button class = 'board'></button></td>
+    <td><button class = 'board'></button></td>
+    </tr> 
+    
+</table>
+
+<div id=playerSelect>
+    <h1>pick your poison</h1>
+        <br>
+        <button class='select'>X</button>
+        <button class='select'>O</button>
+    </div>    
+    
+    
+    
+</body>
+
+
+
+<style>
+    .board{
+        height:100px;
+        width: 100px;
+        font-size: 50px;
+    }
+    .playerSelect{
+    }
+</style>
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+var arr=[1,2,3,4,5,6,7,8,9];
+    
+var player='X';
+$('.select').click(function(){
+    player = $(this).text()
+    $('#playerSelect').text('');
+// build an ai function to play, 
+
+});
+    
+// build win condition    
+    
+// on button click changes from X to O, after player selection, player = O or X
+$('.board').click(function(){
+$(this).text(player);
+});
+
+    
+
+
+    
+    
+// winning combos 123,456,789,147,258,369,159,357
+
+
+
+
+
+</script>
