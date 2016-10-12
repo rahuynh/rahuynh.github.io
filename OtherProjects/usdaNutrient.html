@@ -7,7 +7,7 @@
     <p>(working on a click function, to be added later)</p><br>
     
 <input type='text' placeholder="put food terms" id="searchBar"><button id="searchBtn">Click here to search foods</button>
-    
+    <button id="return">return to results</button>
   
     <br><br>
     
@@ -62,19 +62,13 @@ $.ajax({
         
         
         
-}// ajax functiom
+}// ajax function
 });// ajax request to search for foods. takes api, pushes name and food id to array, then posts array to make a table.
     
     });//click  function close
     
     
-    
-    
-    $('#nutritionBtn').click(function(){
-    
-  
-    
-});// ajax request takes ndbno from search and uses it make to api call and get nutrition report on food
+// ajax request takes ndbno from search and uses it make to api call and get nutrition report on food
 
 //http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=W4OWzvIoVavVzWCiq1lrWy44uAOGWX5FbSw4eHQx   this link gets a request for food data
     
@@ -83,7 +77,7 @@ $.ajax({
     
 //api key = https://api.data.gov/nrel/alt-fuel-stations/v1/nearest.json?api_key=W4OWzvIoVavVzWCiq1lrWy44uAOGWX5FbSw4eHQx&location=Denver+CO
 
-});
+
     
     $('#results').on('click','.foodID',function(){
     var foodID =$(this).text()
@@ -102,14 +96,23 @@ console.log(data);        foodInfo.push(data.report.food.name+'<br><br>');
         }
         
         $('#results').append(foodInfo);
+        // return function
+$('#return').click(function(){
+    $('#results').text('');
+// need to find a way to return last results
+    
+});
         
-
+        
         
     }// function close
         
         
     });
-})
-     
+});
+});
 
+    
+    
+    
 </script>

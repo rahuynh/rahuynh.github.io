@@ -1,24 +1,22 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <body>
-    
-    <br>
-<table>
+    <h3>Tic Tac Toe</h3>
+<table id="test">
 <tr>
-<td><button class = 'board'></button></td>
-<td><button class = 'board'></button></td>
-    <td><button class = 'board'></button></td>
-    </tr>   
-    
+<td><button id='1' class = 'board'></button></td>
+<td><button id='2' class = 'board'></button></td>
+    <td><button id='3' class = 'board'></button></td>
+    </tr>     
 <tr>
-<td><button class = 'board'></button></td>
-<td><button class = 'board'></button></td>
-    <td><button class = 'board'></button></td>
+<td><button id='4' class = 'board'></button></td>
+<td><button id='5' class = 'board'></button></td>
+    <td><button id='6' class = 'board'></button></td>
     </tr> 
     
     <tr>
-<td><button class = 'board'></button></td>
-<td><button class = 'board'></button></td>
-    <td><button class = 'board'></button></td>
+<td><button id='7' class = 'board'></button></td>
+<td><button id='8' class = 'board'></button></td>
+    <td><button id='9' class = 'board'></button></td>
     </tr> 
     
 </table>
@@ -26,8 +24,8 @@
 <div id=playerSelect>
     <h1>pick your poison</h1>
         <br>
-        <button class='select'>X</button>
-        <button class='select'>O</button>
+        <button class='select' id="X">X</button>
+        <button class='select' id='O'>O</button>
     </div>    
     
     
@@ -50,32 +48,105 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
-var arr=[1,2,3,4,5,6,7,8,9];
+var gameOver=false;
+var player1Spaces=[];
+var player1='';
+var player1Score=0;
+var cpuSpaces =[];
+var cpu ='';
+var cpuScore=0
+var winningCombo = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]; // each panel is numbered 1-9
+var openPanels = [1,2,3,4,5,6,7,8,9];
     
-var player='X';
 $('.select').click(function(){
-    player = $(this).text()
+       selection= $(this).attr('id');
+    if (selection==='X'){
+    player1 = 'X';
+    cpu='O';
+    } 
+    if (selection==='O'){
+        player1='O';
+        cpu='X'
+        cpuTurn()
+    }
+        
     $('#playerSelect').text('');
 // build an ai function to play, 
-
 });
-    
-// build win condition    
-    
+//selects player, then disappears
+        
 // on button click changes from X to O, after player selection, player = O or X
 $('.board').click(function(){
-$(this).text(player);
-});
+    if (player1!==""){
+$(this).text(player1);
+    var position = parseInt($(this).attr('id'));
+var isOpen =openPanels.indexOf(position);
+        
+        if (isOpen!==-1){
+ openPanels.splice(openPanels.indexOf(position),1);
+    player1Spaces.push(position);
+    }   // makes panel as unavailable and pushes marked panel to list of player's panels
+       // function below determines who is winner 
+        winningCombo.forEach(function(arr){
+    arr.forEach(function(number){        player1Spaces.forEach(function(space){
+            if (space===number){
+                player1Score++;
+            }
+        });
+        if (player1Score===3){
+        alert('Player '+player1+' wins!');
+            gameOver=true;
+        window.location.reload();
 
+        }
+    }); 
+      player1Score =0;  
+    });
+        }
+    cpuTurn();
+});// board click function
+
+
+// function for cpu ai
+    
+function cpuTurn(){
+    if (openPanels.length===0&&gameOver===false){
+        alert('Draw!');
+        window.location.reload();
+    }
+    if (openPanels.length===1){
+         var cpuPosition=openPanels[0];
+    } else {
+    var ran = Math.floor(Math.random()*openPanels.length);
+        
+var cpuPosition=openPanels[ran];
+    }
+openPanels.splice(openPanels.indexOf(cpuPosition),1);
+    $('#'+cpuPosition).text(cpu);
+    cpuSpaces.push(cpuPosition)
+    
+// checks for cpu score
+    winningCombo.forEach(function(arr){
+    arr.forEach(function(number){        cpuSpaces.forEach(function(space){
+            if (space===number){
+                cpuScore++;
+            }
+        });
+        if (cpuScore===3){
+        alert('Player '+cpu+' wins!');
+            gameOver=true;
+        window.location.reload();
+        }
+    }); 
+      cpuScore =0;
+    });
+    // end of cpu score checker    
+}// end of cpuTurn function 
+    
+    
     
 
-
     
-    
-// winning combos 123,456,789,147,258,369,159,357
-
-
-
 
 
 </script>
