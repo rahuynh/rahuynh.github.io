@@ -1,0 +1,168 @@
+
+<body>
+<div>    
+<button id="green" class='color'></button>
+<button id="red" class='color'></button>
+</div>
+    <div>
+<button id="blue" class='color'></button>
+<button id="yellow" class='color'></button>
+</div> 
+<div>    
+<button class ="function"id="start" >START</button>
+<button class="function" id="strictMode">Strict Mode</button>    
+</div>        
+    
+<div>
+<h4>Count:</h4>
+</div>    
+    
+   
+    
+<h2>Press Start!</h2>
+<br>
+<h3></h3>
+</body>
+
+<style>
+    button{
+        width:100px;
+        height:50px;
+    }
+    #green{
+        background:green;
+    }
+    
+    #red{
+        background: red;
+    }
+    #blue{
+        background:blue;
+        
+    }
+    #yellow{
+        background:yellow;
+    }
+    .clicked{
+        opacity:0.2;
+    }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+var strictMode = false 
+
+$('#strictMode').click(function(){
+   strictMode=!strictMode 
+   if (strictMode===true){
+    $('h2').text('strict mode on!');
+   } else {$('h2').text('');}
+    
+});
+
+var greenSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
+    
+var redSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
+    
+var blueSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');    
+    
+var yellowSound = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
+    
+var sounds = [greenSound,redSound,blueSound,yellowSound];
+var soundSequence=[];
+    
+var colors =['green','red','blue','yellow'];
+var sequence=[];
+var player=[];
+// there are two arrays, a color and corresponding sound
+    
+function randomColor(){
+    var color = Math.floor(Math.random()*colors.length);
+    sequence.push(colors[color]);
+soundSequence.push(sounds[color]);
+return color;    
+}// function generates a random color
+
+    $('#start').click(function(){
+        $('h2').text('');
+            randomColor();
+ $('#'+sequence[0]).toggleClass('clicked');
+setTimeout(function(){$('#'+sequence[0]).removeClass('clicked');},1000);   
+        soundSequence[0].play();
+    });
+
+    
+    $('.color').click(function(){
+        var colorClicked=$(this).attr('id');
+        player.push(colorClicked);
+        var lastClicked = player.length-1;
+     $(this).toggleClass('clicked');
+        setTimeout(function(){$('#'+colorClicked).removeClass('clicked');},900);// button clicking animation
+        sounds[colors.indexOf(colorClicked)].play();
+        // colors and sounds arrays have same index for color , so I used index of color clicked on color array and used that index to call the element to play a sound on sounds array
+        
+if (player[lastClicked]!==sequence[lastClicked] &&strictMode===false) {
+    alert('try again!');
+    player=[];
+    var n=0;    
+          playSequence = setInterval(function(){
+ $('#'+sequence[n]).toggleClass('clicked');
+if (sequence[n]){           soundSequence[n].play();    
+        }
+              n++;
+
+setTimeout(function(){$('#'+sequence[n]).removeClass('clicked');},900);  
+          if(n-1===sequence.length){clearInterval(playSequence);
+            $('.color').removeClass('clicked')                      
+             }
+            },1000);
+} else if (player[lastClicked]!==sequence[lastClicked] &&strictMode===true){
+    alert('GAMEOVER SUCKER!');
+}
+   
+    
+//need statement for if they are not equal    
+    if (player.length===20){
+        alert('you win!!');
+    }    
+        
+        if (player.length===sequence.length){
+        $('h4').text('Count:'+player.length)
+        player=[];
+        randomColor(); 
+        var n=0;  
+            
+          playSequence = setInterval(function(){
+ $('#'+sequence[n]).toggleClass('clicked');
+        if (sequence[n]){           soundSequence[n].play();    
+        }      
+    n++;
+
+setTimeout(function(){$('#'+sequence[n]).removeClass('clicked');},900);      
+          if(n-1===sequence.length){clearInterval(playSequence);
+            $('.color').removeClass('clicked');                    
+             }
+            },1000);
+               
+// function that play sequences         
+} //reset player array and add to new sequence, then restart WORKS!    
+        
+        // + make noise 
+   
+    });// color button click function
+
+
+//  enable strict mode
+
+    
+    
+    /*
+-! create buttons assign each button a color and number, 
+ -!create array, at button start, push random number to array to begin sequence
+ -!create new array that pushes corresponding id with button click and checks that it matches with pattern.
+-!once sequence is correctly matched(length of two arrays are the same and pattern is equal, reset second array add another random element to original sequence
+-!have display that shows  length of array
+-!if length of array === n then you win the game
+-have a strict mode where if it is wrong, then start from the beginning
+*/
+</script>

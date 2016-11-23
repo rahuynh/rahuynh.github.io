@@ -1,13 +1,15 @@
-<body>
 
-<div>
-    
-    </div>
-</body>
+<html>
+    <button id='all'>All</button>
+        <button id='online'>Online</button>
+        <button id= 'offline'>Offline</button>
+<p></p>
+
+</html>
 
 <style>
     img{
-        height: 30px;
+        height:50px;
     }
 
 </style>
@@ -16,41 +18,99 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script>
-var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas","brunofin","comster404"];
+// all button shows all users    
+$('#all').click(function(){    $('p').text('');
+users.forEach(function(user){
     
-   
-for (var i =0;i<users.length;i++){
-    var url;
-    var logo;
-    var name;
-    var status;
-    
-$.getJSON("https://api.twitch.tv/kraken/channels/"+users[i],function(data){
-    $('div').append("<img src='"+data.logo+"'>");
-    $('div').append(data.display_name+'<br><br>');
-    url = data.url;
-    logo="<img src='"+data.logo+"'>";
-    name=data.display_name;
-    
-});//JSON call close
-    
-$.getJSON("https://api.twitch.tv/kraken/streams/"+users[i],function(data){
-    console.log(data);
-    if (data.stream!== null){
-        $('div').append("<br>"+data.stream.game+"<br>");
-        status=data.stream.game;
-    } else if (data.stream == null){
-        $('div').append('offline')
+var image;
+ $.ajax({
+type:"GET",
+url:"https://api.twitch.tv/kraken/users/"+user,
+headers: {
+"Client-ID": "ldsyfojkjnsdetxutbz7xjo26i7o41x"}, 
+success:function(data){
+        console.log(data);
+image = '<a href="https://www.twitch.tv/'+user+'"><img src ='+data.logo+'></a>'; 
+}});    
+// just need username, picture and if they are offline/online
+// if they are online, then show what they are streaming
+ $.ajax({
+type:"GET",
+url:"https://api.twitch.tv/kraken/streams/"+user,
+headers: {
+"Client-ID": "ldsyfojkjnsdetxutbz7xjo26i7o41x"}, 
+    error: function(){$('p').append(image+user+' does not exist<br>')},
+success:function(data){
+    if (data.stream){
+        $('p').append(image +user+' :streaming '+data.stream.game+'<br>')
+    } else {
+   $('p').append(image+user+ ' :offline<br>');
     }
+}}); 
+});// loop end
+});
     
+ //button for    
+$('#online').click(function(){    
+$('p').text('');    
+users.forEach(function(user){
+var image;
+ $.ajax({
+type:"GET",
+url:"https://api.twitch.tv/kraken/users/"+user,
+headers: {
+"Client-ID": "ldsyfojkjnsdetxutbz7xjo26i7o41x"}, 
+success:function(data){
+        console.log(data);
+image = '<a href="https://www.twitch.tv/'+user+'"><img src ='+data.logo+'></a>'; 
+}});    
+// just need username, picture and if they are offline/online
+// if they are online, then show what they are streaming
+ $.ajax({
+type:"GET",
+url:"https://api.twitch.tv/kraken/streams/"+user,
+headers: {
+"Client-ID": "ldsyfojkjnsdetxutbz7xjo26i7o41x"}, 
+    
+success:function(data){
+    if (data.stream){
+        $('p').append(image +user+' :streaming '+data.stream.game+'<br>')
+    } 
+}}); 
+});// loop end
+});    
 
+$('#offline').click(function(){    
+$('p').text('');    
+users.forEach(function(user){
+var image;
+ $.ajax({
+type:"GET",
+url:"https://api.twitch.tv/kraken/users/"+user,
+headers: {
+"Client-ID": "ldsyfojkjnsdetxutbz7xjo26i7o41x"}, 
+success:function(data){
+        console.log(data);
+image = '<a href="https://www.twitch.tv/'+user+'"><img src ='+data.logo+'></a>'; 
+}});    
+// just need username, picture and if they are offline/online
+// if they are online, then show what they are streaming
+ $.ajax({
+type:"GET",
+url:"https://api.twitch.tv/kraken/streams/"+user,
+headers: {
+"Client-ID": "ldsyfojkjnsdetxutbz7xjo26i7o41x"}, 
     
-//add class if data.stream =null?
-}); //json call close   
+success:function(data){
+    if (data.stream===null){
+         $('p').append(image+user+ ' :offline<br>');
+    } 
+}}); 
+});// loop end
+});    
     
-}// loop close        
-        
-// seperate api call for each user?
-
-    // loop through array with usernames and just add to json call? 
+    
+    
+    
 </script>
